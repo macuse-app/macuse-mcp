@@ -1,10 +1,18 @@
 .github/
+.git/
 
 .npmignore
 .releaserc.json
+.mcpregistry_*
 tsup.config.ts
+tsconfig.json
 biome.json
+*.mcpb
+*.dxt
 
 node_modules/
 scripts/
 src/
+build/*.map
+
+pnpm-lock.yaml

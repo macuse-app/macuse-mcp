@@ -1,133 +1,70 @@
-# Macuse
+# Macuse MCP
 
-<p align="center">
-  <img src="https://macuse.app/logo.png" alt="Macuse" width="128" height="128">
-</p>
+MCPB plugin for connecting Claude Desktop to [Macuse](https://macuse.app).
 
-<h3 align="center">
-  Give Your AI Superpowers on macOS
-</h3>
+> **Note:** This is the plugin implementation only. The Macuse desktop application is closed-source and available at https://macuse.app
 
-<p align="center">
-  Connect AI with any macOS app. Deep integration with native apps like Calendar, Mail, Notes, plus UI control for all applications. Works with Claude, Cursor, Raycast, and any MCP-compatible AI.
-</p>
+## What is Macuse?
 
-<p align="center">
-  <a href="#"><img src="https://img.shields.io/badge/platform-macOS_10.15+-lightgreen" alt="Platform"></a>
-  <a href="https://modelcontextprotocol.io"><img src="https://img.shields.io/badge/MCP-Compatible-green" alt="MCP Compatible"></a>
-  <a href="#releases"><img src="https://img.shields.io/badge/CI-GitHub%20Releases-blue" alt="Releases"></a>
-</p>
+Macuse is an MCP server for macOS that connects AI assistants to native apps and system automation.
 
-<p align="center">
-  <a href="https://macuse.app/download/">Download</a> •
-  <a href="#releases">Releases</a> •
-  <a href="https://macuse.app">Website</a>
-</p>
+| Toolbox             | Capabilities                                                                       |
+| ------------------- | ---------------------------------------------------------------------------------- |
+| **Calendar**        | View calendars, search events, create/reschedule meetings, find free time slots   |
+| **Reminders**       | Create reminders with due dates and priorities, mark complete, search across lists |
+| **Mail**            | Search emails, read content, compose/send/reply, move between mailboxes           |
+| **Messages**        | Search iMessage conversations, send messages, retrieve chat history               |
+| **Notes**           | Browse folders, full-text search, create and edit notes                           |
+| **Contacts**        | Look up contacts by name/email/phone/company                                      |
+| **Maps & Location** | Place search, directions, travel time, current location                           |
+| **UI Viewer**       | Inspect any app's UI hierarchy, read visible text, find elements                  |
+| **UI Controller**   | Click buttons, type text, press shortcuts, control any application                |
 
----
+All processing runs locally on your Mac.
 
-Macuse is a dual‑mode desktop application that bridges AI assistants with native macOS functionality through the Model Context Protocol (MCP). It enables AI clients to control Mac applications, access system information, and automate workflows while maintaining security and user privacy.
+## Why This Plugin?
 
-## Key Features
-
-Macuse provides practical, local capabilities through toolboxes, including:
-
-- System: launch and manage apps, general system operations
-- Inspector: explore app UI structure to understand elements
-- Interaction: click/type/interact with UI elements
-- Calendar & Reminders: read and manage events and reminders (with consent)
-- Contacts, Notes, Messages: access common personal apps (with consent)
-- Location & Maps: read current location and use mapping features (with consent)
-
-Everything runs locally. Access is protected by a token you control, and sensitive actions require the appropriate macOS permissions.
+Claude Desktop doesn't support `http://` remote connectors directly. This `.mcpb` plugin provides a way to connect without manually editing configuration files.
 
 ## Installation
 
-1. Download the latest installer from the Website: https://macuse.app/download/
-2. Unzip the downloaded file.
-3. Drag `Macuse.app` into your `Applications` folder.
+### Prerequisites
 
-## Configure Macuse
+1. Download Macuse from https://macuse.app/download/
+2. Drag `Macuse.app` into `/Applications`
+3. Launch and grant the necessary permissions
 
-Open Macuse to review and adjust your connection and capabilities:
+### Install Plugin
 
-- Access Token: copy your token to connect clients, you can regenerate it anytime.
-- Transport Mode:
-  - Stdio: direct connection with no open ports, simplest for most clients.
-  - SSE: runs a local server on your bind address/port and streams events.
-  - Streamable HTTP: runs a local HTTP endpoint suitable for clients that prefer HTTP.
-- Network (for SSE/HTTP):
-  - Bind Address: default `127.0.0.1` (local only).
-  - Port: default `35729`. Use the built‑in port check to avoid conflicts.
-- Toolboxes: enable/disable capabilities such as Inspector, Interaction, Calendar, Contacts, Messages, Notes, and Location.
-- Permissions: macOS will prompt for Accessibility, Contacts, Calendars, Reminders, Location, etc., when needed.
+Download `macuse.mcpb` from [Releases](https://github.com/macuse-app/macuse-mcp/releases) and double-click to install in Claude Desktop.
 
-## Connect Your MCP Client
+To uninstall, remove it from Claude Desktop settings.
 
-1. In Macuse:
+## Alternative: Direct CLI
 
-- Choose your Transport Mode (Stdio recommended). If using SSE/HTTP, confirm bind address and port.
-
-2. In your client:
-
-- If the client supports `.mcpb` plugins
-  - Copy your Access Token.
-  - Download and install `macuse.mcpb`, then provide your Access Token (and binary path if prompted; default is `/Applications/Macuse.app/Contents/MacOS/macuse`).
-- If the client does not support `.mcpb`
-  - Use Macuse’s one‑click setup buttons to configure supported clients (e.g., Claude, Cursor, Raycast, AnythingLLM), or
-  - Copy the generated configuration from Macuse and paste it into your client’s settings for manual setup.
-
-### Manual Configuration (JSON Examples)
-
-Generic connection config (copy/paste friendly):
-
-Stdio
+For MCP clients that support custom commands, you can skip this plugin and configure directly:
 
 ```json
 {
-  "mode": "stdio",
-  "config": {
-    "type": "stdio",
-    "command": "/Applications/Macuse.app/Contents/MacOS/macuse",
-    "args": ["--stdio"],
-    "env": { "ACCESS_TOKEN": "<YOUR_TOKEN>" }
+  "mcpServers": {
+    "macuse": {
+      "command": "/Applications/Macuse.app/Contents/MacOS/macuse",
+      "args": ["mcp"]
+    }
   }
 }
 ```
 
-SSE
+## First Connection
 
-```json
-{
-  "mode": "sse",
-  "config": {
-    "type": "sse",
-    "url": "http://<BIND_ADDRESS>:<PORT>/sse",
-    "headers": { "Authorization": "Bearer <YOUR_TOKEN>" }
-  }
-}
-```
+1. Macuse launches automatically if not running
+2. Approve the OAuth authorization prompt
+3. Connection established
 
-Streamable HTTP
+Each client gets separate authorization, manageable in Macuse settings.
 
-```json
-{
-  "mode": "streamableHttp",
-  "config": {
-    "type": "streamable-http",
-    "url": "http://<BIND_ADDRESS>:<PORT>/mcp",
-    "headers": { "Authorization": "Bearer <YOUR_TOKEN>" }
-  }
-}
-```
+## Links
 
-## Privacy & Security
-
-- The Access Token authenticates your client to Macuse locally; it is not sent to remote servers.
-- macOS permissions (Contacts, Calendar, Accessibility, etc.) must be explicitly granted by you when needed.
-
-## Helpful Links
-
-- Website: https://macuse.app/
-- Download: https://macuse.app/download/
-- Model Context Protocol: https://modelcontextprotocol.io/
+- Macuse Website: https://macuse.app/
+- Macuse Download: https://macuse.app/download/
+- MCP: https://modelcontextprotocol.io/

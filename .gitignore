@@ -68,4 +68,5 @@ Thumbs.db
 
 # Build artifacts
 *.mcpb
+*.dxt
 .mcpregistry_*

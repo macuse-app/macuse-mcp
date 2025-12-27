@@ -9,7 +9,6 @@ function sha256OfFile(path) {
 
 try {
   const pkg = JSON.parse(readFileSync("package.json", "utf8"));
-  // Ensure final artifact name is macuse.mcpb; if pack produced another name, rename was handled in prepare step
   const file =
     readdirSync(".").find((f) => f.endsWith(".mcpb")) || "macuse.mcpb";
   const hash = sha256OfFile(file);
@@ -21,10 +20,10 @@ try {
   // Update version and package information
   server.version = pkg.version;
 
-  // Update the first package entry (MCPB package)
+  // Update the first package entry
   if (server.packages && server.packages.length > 0) {
     server.packages[0].version = pkg.version;
-    server.packages[0].identifier = `https://github.com/macuse-app/macuse/releases/download/v${pkg.version}/macuse-${pkg.version}.mcpb`;
+    server.packages[0].identifier = `https://github.com/macuse-app/macuse-mcp/releases/download/v${pkg.version}/macuse-${pkg.version}.mcpb`;
     server.packages[0].file_sha256 = hash;
     server.packages[0].transport = {
       type: "stdio",

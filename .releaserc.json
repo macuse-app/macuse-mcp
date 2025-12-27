@@ -13,7 +13,7 @@
     [
       "@semantic-release/exec",
       {
-        "prepareCmd": "node scripts/sync-manifest-version.js && pnpm run pack && node -e \"const fs=require('fs');const m=fs.readdirSync('.').filter(f=>f.endsWith('.mcpb'))[0];if(m&&m!=='macuse.mcpb')fs.renameSync(m,'macuse.mcpb');\" && node scripts/update-server-json.js"
+        "prepareCmd": "node scripts/sync-manifest-version.js && pnpm run pack && node scripts/update-server-json.js"
       }
     ],
     [

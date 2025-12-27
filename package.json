@@ -1,7 +1,7 @@
 {
   "name": "macuse-mcp",
   "version": "1.0.1",
-  "description": "Bridges AI assistants with native macOS functionality through the Model Context Protocol (MCP).",
+  "description": "DXT plugin for connecting Claude Desktop to Macuse",
   "type": "module",
   "main": "build/index.js",
   "bin": {
@@ -14,9 +14,9 @@
     "lint": "biome check .",
     "lint:fix": "biome check --write .",
     "format": "biome format --write .",
-    "clean": "rm -rf build",
+    "clean": "rm -rf build *.mcpb",
     "prepublishOnly": "npm run clean && npm run build",
-    "pack": "npm run build && npx @anthropic-ai/mcpb pack"
+    "pack": "npm run build && npx @anthropic-ai/mcpb pack . macuse.mcpb"
   },
   "keywords": [
     "macuse",
@@ -25,17 +25,9 @@
     "mcp",
     "model-context-protocol"
   ],
-  "author": "Macuse Team",
   "license": "MIT",
   "homepage": "https://macuse.app",
-  "bugs": {
-    "url": "https://github.com/macuse-app/macuse/issues"
-  },
-  "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.17.3",
-    "zod": "^3.23.8",
-    "zod-to-json-schema": "^3.24.6"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@anthropic-ai/mcpb": "^1.1.0",
     "@biomejs/biome": "^2.2.2",
