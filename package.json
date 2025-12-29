@@ -1,7 +1,7 @@
 {
   "name": "macuse-mcp",
   "version": "1.0.1",
-  "description": "DXT plugin for connecting Claude Desktop to Macuse",
+  "description": "MCP bundle for connecting Claude Desktop to Macuse",
   "type": "module",
   "main": "build/index.js",
   "bin": {

@@ -1,8 +1,6 @@
 # Macuse MCP
 
-MCPB plugin for connecting Claude Desktop to [Macuse](https://macuse.app).
-
-> **Note:** This is the plugin implementation only. The Macuse desktop application is closed-source and available at https://macuse.app
+MCPB Bundle for connecting Claude Desktop to [Macuse](https://macuse.app).
 
 ## What is Macuse?
 
@@ -22,9 +20,9 @@ Macuse is an MCP server for macOS that connects AI assistants to native apps and
 
 All processing runs locally on your Mac.
 
-## Why This Plugin?
+## Why This MCP Bundle?
 
-Claude Desktop doesn't support `http://` remote connectors directly. This `.mcpb` plugin provides a way to connect without manually editing configuration files.
+Claude Desktop doesn't support `http://` remote connectors directly. This `.mcpb` provides a way to connect without manually editing configuration files.
 
 ## Installation
 
@@ -34,7 +32,7 @@ Claude Desktop doesn't support `http://` remote connectors directly. This `.mcpb
 2. Drag `Macuse.app` into `/Applications`
 3. Launch and grant the necessary permissions
 
-### Install Plugin
+### Install MCP Bundle
 
 Download `macuse.mcpb` from [Releases](https://github.com/macuse-app/macuse-mcp/releases) and double-click to install in Claude Desktop.
 
@@ -42,7 +40,7 @@ To uninstall, remove it from Claude Desktop settings.
 
 ## Alternative: Direct CLI
 
-For MCP clients that support custom commands, you can skip this plugin and configure directly:
+For MCP clients that support custom commands, you can skip this MCP bundle and configure directly:
 
 ```json
 {
