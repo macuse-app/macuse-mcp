@@ -7,13 +7,13 @@
     "url": "https://github.com/macuse-app/macuse",
     "source": "github"
   },
-  "version": "1.0.1",
+  "version": "1.1.0",
   "packages": [
     {
       "registry_type": "mcpb",
-      "version": "1.0.1",
-      "identifier": "https://github.com/macuse-app/macuse/releases/download/v1.0.1/macuse-1.0.1.mcpb",
-      "file_sha256": "9e3444c567c66a57d15657dca437dbdb9560d16f00e6d4ac3d95ea795b9b482e",
+      "version": "1.1.0",
+      "identifier": "https://github.com/macuse-app/macuse-mcp/releases/download/v1.1.0/macuse-1.1.0.mcpb",
+      "file_sha256": "3b02af9423e8ce2ad2de599e4d1ac081caef7f61c5c9a23def53b0c71bb170a0",
       "transport": {
         "type": "stdio"
       }

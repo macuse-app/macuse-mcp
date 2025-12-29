@@ -1,3 +1,15 @@
+# [1.1.0](https://github.com/macuse-app/macuse-mcp/compare/v1.0.1...v1.1.0) (2025-12-29)
+
+
+### Bug Fixes
+
+* add stdio transport field to MCP server.json ([3815ebc](https://github.com/macuse-app/macuse-mcp/commit/3815ebc4648cdf4e08a618303218c7606ba5be70))
+
+
+### Features
+
+* adapt to macuse v1 with simplified stdio wrapper ([0a02579](https://github.com/macuse-app/macuse-mcp/commit/0a025792aaa7aa2cfa3f7caf0e54c5db2e3eda06))
+
 ## [1.0.1](https://github.com/macuse-app/macuse/compare/v1.0.0...v1.0.1) (2025-09-18)
 
 
