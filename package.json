@@ -1,6 +1,6 @@
 {
   "name": "macuse-mcp",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "MCP bundle for connecting Claude Desktop to Macuse",
   "type": "module",
   "main": "build/index.js",

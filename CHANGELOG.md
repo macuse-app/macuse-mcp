@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/macuse-app/macuse-mcp/compare/v1.1.0...v1.1.1) (2026-01-03)
+
+
+### Bug Fixes
+
+* update server.json to MCP Registry schema 2025-12-11 ([b836b3f](https://github.com/macuse-app/macuse-mcp/commit/b836b3ff094a2d5b523845473a622df004619649))
+
 # [1.1.0](https://github.com/macuse-app/macuse-mcp/compare/v1.0.1...v1.1.0) (2025-12-29)
 
 

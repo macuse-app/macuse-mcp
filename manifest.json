@@ -2,7 +2,7 @@
   "manifest_version": "0.4",
   "name": "macuse-mcp",
   "display_name": "Macuse",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Connect AI assistants to native macOS apps and UI automation.",
   "long_description": "Macuse is a macOS MCP server for Calendar, Mail, Reminders, Notes, Messages, Contacts, Maps, and UI automation. All processing runs locally. Use this bundle to connect Claude Desktop to Macuse via OAuth.",
   "author": {
