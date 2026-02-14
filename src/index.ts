@@ -10,6 +10,7 @@
 
 import { type ChildProcess, spawn } from "node:child_process";
 import { existsSync } from "node:fs";
+import { createInterface } from "node:readline";
 
 const DEFAULT_MACUSE_BINARY = "/Applications/Macuse.app/Contents/MacOS/macuse";
 
@@ -73,11 +74,16 @@ function main(): void {
     process.exit(1);
   }
 
-  // Forward stdin to macuse process
+  // Forward stdin to macuse process (raw pipe — MCP messages are line-delimited)
   process.stdin.pipe(macuseProcess.stdin);
 
-  // Forward macuse stdout to our stdout
-  macuseProcess.stdout.pipe(process.stdout);
+  // Forward macuse stdout line-by-line to ensure each JSON-RPC message
+  // is written as a single atomic write(), preventing large messages
+  // (e.g. base64 images) from being split across pipe buffer boundaries.
+  const rl = createInterface({ input: macuseProcess.stdout, crlfDelay: Infinity });
+  rl.on("line", (line) => {
+    process.stdout.write(line + "\n");
+  });
 
   // Handle process exit
   macuseProcess.on("exit", (code, signal) => {
