@@ -80,9 +80,12 @@ function main(): void {
   // Forward macuse stdout line-by-line to ensure each JSON-RPC message
   // is written as a single atomic write(), preventing large messages
   // (e.g. base64 images) from being split across pipe buffer boundaries.
-  const rl = createInterface({ input: macuseProcess.stdout, crlfDelay: Infinity });
+  const rl = createInterface({
+    input: macuseProcess.stdout,
+    crlfDelay: Infinity,
+  });
   rl.on("line", (line) => {
-    process.stdout.write(line + "\n");
+    process.stdout.write(`${line}\n`);
   });
 
   // Handle process exit
