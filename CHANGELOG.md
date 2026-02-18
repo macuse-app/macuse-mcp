@@ -1,3 +1,11 @@
+## [1.1.2](https://github.com/macuse-app/macuse-mcp/compare/v1.1.1...v1.1.2) (2026-02-18)
+
+
+### Bug Fixes
+
+* resolve biome lint and format errors in index.ts ([334226b](https://github.com/macuse-app/macuse-mcp/commit/334226b7bf94dc0e461c91b5d741c382736b3086))
+* use line-buffered stdout to prevent message splitting ([e0eceda](https://github.com/macuse-app/macuse-mcp/commit/e0ecedaa94ce4bcdeead27a09c77ab02985afe91))
+
 ## [1.1.1](https://github.com/macuse-app/macuse-mcp/compare/v1.1.0...v1.1.1) (2026-01-03)
 
 
