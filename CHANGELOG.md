@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/macuse-app/macuse-mcp/compare/v1.1.2...v1.2.0) (2026-03-03)
+
+
+### Features
+
+* add icon to manifest ([d3bf069](https://github.com/macuse-app/macuse-mcp/commit/d3bf069d7d5c61c10561f1000418471834463157))
+
 ## [1.1.2](https://github.com/macuse-app/macuse-mcp/compare/v1.1.1...v1.1.2) (2026-02-18)
 
 
