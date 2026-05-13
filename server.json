@@ -1,7 +1,7 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.macuse-app/macuse",
-  "description": "Bridges AI assistants with native macOS functionality through the Model Context Protocol (MCP).",
+  "description": "MCP server for Mac. Lets AI assistants control native macOS apps (Calendar, Mail, Notes, Reminders, Messages, Contacts, Maps, Shortcuts) and any Mac app via Computer Use — all on-device with per-client OAuth. Works with Claude Desktop, Cursor, Codex, Raycast, and any MCP client.",
   "repository": {
     "url": "https://github.com/macuse-app/macuse",
     "source": "github"

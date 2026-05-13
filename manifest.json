@@ -1,11 +1,11 @@
 {
-  "manifest_version": "0.4",
+  "manifest_version": "0.3",
   "name": "macuse-mcp",
   "display_name": "Macuse",
   "version": "1.2.0",
-  "description": "Connect AI assistants to native macOS apps and UI automation.",
+  "description": "MCP server for Mac — give AI direct control of Calendar, Mail, Notes, Reminders, and any Mac app, fully on-device.",
   "icon": "icon.png",
-  "long_description": "Macuse is a macOS MCP server for Calendar, Mail, Reminders, Notes, Messages, Contacts, Maps, and UI automation. All processing runs locally. Use this bundle to connect Claude Desktop to Macuse via OAuth.",
+  "long_description": "Macuse is an MCP server for macOS that lets AI assistants control native apps (Calendar, Mail, Notes, Reminders, Messages, Stickies, Contacts, Maps, Shortcuts) and drive any Mac app via Computer Use. All processing runs locally with per-client OAuth and per-app permissions. This bundle is the one-click installer for Claude Desktop; other MCP clients (Cursor, Codex, Raycast, VS Code, Warp, Zed, LM Studio, Windsurf) can connect directly to the Macuse CLI.",
   "author": {
     "name": "Macuse",
     "url": "https://macuse.app"
