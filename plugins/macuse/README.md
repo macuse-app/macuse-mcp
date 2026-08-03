@@ -18,14 +18,14 @@ app binary, which handles OAuth, permissions, and all protocol work.
 
 ```bash
 /plugin marketplace add macuse-app/macuse-mcp
-/plugin install macuse@macuse
+/plugin install macuse@macuse-plugins
 ```
 
 **Codex**
 
 ```bash
 codex plugin marketplace add macuse-app/macuse-mcp
-codex plugin install macuse
+codex plugin add macuse@macuse-plugins
 ```
 
 If the app is installed somewhere other than `/Applications`, set
@@ -52,6 +52,22 @@ fail with `User did not respond to the consent prompt` until that lands.
 
 The skills detect this failure mode and explain it rather than retrying
 blindly, but the underlying limitation is upstream.
+
+## Why Two MCP Configs
+
+`.mcp.json` and `.mcp.codex.json` describe the same server but resolve its
+path differently, because the two ecosystems do not share a substitution
+mechanism:
+
+- **Claude Code** substitutes `${CLAUDE_PLUGIN_ROOT}` inside `.mcp.json`.
+- **Codex** does not substitute placeholders there. Its own bundled plugins
+  use a relative `command` plus `"cwd": "."`, which resolves against the
+  plugin root, so `.mcp.codex.json` follows that convention.
+
+Each file uses its ecosystem's documented, officially-used form rather than
+relying on one being compatible with the other. The same split applies to
+`${CLAUDE_PLUGIN_ROOT}` in skill text: Claude Code expands it, Codex leaves
+it literal, so `macuse-setup` spells out both paths to `check.sh`.
 
 ## Development
 

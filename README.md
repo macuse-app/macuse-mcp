@@ -57,14 +57,14 @@ paths up front.
 
    ```shell
    /plugin marketplace add macuse-app/macuse-mcp
-   /plugin install macuse@macuse
+   /plugin install macuse@macuse-plugins
    ```
 
    **Codex**
 
    ```shell
    codex plugin marketplace add macuse-app/macuse-mcp
-   codex plugin install macuse
+   codex plugin add macuse@macuse-plugins
    ```
 
 3. **Approve OAuth:** on the first tool call, approve the authorization prompt in the Macuse window

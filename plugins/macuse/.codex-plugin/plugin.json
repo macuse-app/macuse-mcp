@@ -20,7 +20,7 @@
     "messages"
   ],
   "skills": "./skills/",
-  "mcpServers": "./.mcp.json",
+  "mcpServers": "./.mcp.codex.json",
   "interface": {
     "displayName": "Macuse",
     "shortDescription": "AI control for native Mac apps and any Mac GUI",

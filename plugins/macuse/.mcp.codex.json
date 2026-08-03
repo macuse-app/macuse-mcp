@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "macuse": {
+      "command": "./bin/macuse-mcp.sh",
+      "cwd": "."
+    }
+  }
+}

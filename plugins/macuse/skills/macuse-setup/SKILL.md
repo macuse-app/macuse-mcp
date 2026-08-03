@@ -21,10 +21,11 @@ Run the bundled probe and read its KEY=VALUE output:
 bash "${CLAUDE_PLUGIN_ROOT}/skills/macuse-setup/scripts/check.sh"
 ```
 
-`${CLAUDE_PLUGIN_ROOT}` resolves automatically when this skill is installed
-as part of the Macuse plugin. If the skill was copied in standalone (no
-substitution happens and the path stays literal), run
-`scripts/check.sh` from this skill's own directory instead.
+Claude Code substitutes `${CLAUDE_PLUGIN_ROOT}` automatically. Elsewhere —
+Codex, or a standalone copy of this skill — nothing substitutes it and the
+path stays literal; in that case run `scripts/check.sh` relative to this
+skill's own directory. Either way the probe is read-only, so a wrong guess
+costs nothing but a "no such file" error.
 
 | Output | Meaning | Go to |
 | --- | --- | --- |
