@@ -23,7 +23,9 @@
           "CHANGELOG.md",
           "package.json",
           "manifest.json",
-          "server.json"
+          "server.json",
+          "plugins/macuse/.claude-plugin/plugin.json",
+          "plugins/macuse/.codex-plugin/plugin.json"
         ],
         "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
       }

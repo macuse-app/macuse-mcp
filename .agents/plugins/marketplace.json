@@ -1,0 +1,20 @@
+{
+  "name": "macuse-plugins",
+  "interface": {
+    "displayName": "Macuse"
+  },
+  "plugins": [
+    {
+      "name": "macuse",
+      "source": {
+        "source": "local",
+        "path": "./plugins/macuse"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_USE"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

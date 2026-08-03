@@ -4,7 +4,17 @@ Give your AI direct control of Calendar, Mail, Notes, Reminders, Messages, and a
 
 Works with Claude Desktop, Cursor, Codex, Raycast, VS Code, Warp, Zed, LM Studio, Windsurf, and any MCP-compatible client.
 
-> This repo packages the **Claude Desktop `.mcpb` installer** for [Macuse](https://macuse.app). The macOS app and full docs live at [macuse.app](https://macuse.app).
+> This repo packages Macuse for agent clients: the **Claude Desktop `.mcpb` installer** and the **agent plugin** for Claude Code and Codex. The macOS app itself and the full docs live at [macuse.app](https://macuse.app).
+
+| You use | Install this | Get |
+| --- | --- | --- |
+| Claude Code, Codex | [Agent plugin](#install-as-an-agent-plugin) | MCP tools **+ skills** |
+| Claude Desktop | [`.mcpb` bundle](#install-for-claude-desktop) | MCP tools |
+| Cursor, Raycast, VS Code, Zed, … | [Direct command](#use-with-other-mcp-clients) | MCP tools |
+
+All three connect to the same local server. The plugin additionally installs
+skills — instructions that teach the agent how to use the tools correctly
+instead of discovering the parameter shapes by trial and error.
 
 ## What Macuse Does
 
@@ -33,6 +43,50 @@ See and control any Mac app — even ones without a dedicated integration. Macus
 - Click any element, type text, navigate menus, drive any app
 - Fill out web forms, operate enterprise software, automate APIs that don't exist
 - Runs in the background — your cursor and active window stay untouched while AI works in another app
+
+## Install as an Agent Plugin
+
+For **Claude Code** and **Codex**. Bundles the MCP server with three skills, so
+the agent knows the workflows, parameter formats, and permission-error recovery
+paths up front.
+
+1. **Install Macuse:** download from [macuse.app/download](https://macuse.app/download/), drag `Macuse.app` to `/Applications`, and launch it once
+2. **Add the marketplace and install:**
+
+   **Claude Code**
+
+   ```shell
+   /plugin marketplace add macuse-app/macuse-mcp
+   /plugin install macuse@macuse-plugins
+   ```
+
+   **Codex**
+
+   ```shell
+   codex plugin marketplace add macuse-app/macuse-mcp
+   codex plugin add macuse@macuse-plugins
+   ```
+
+3. **Approve OAuth:** on the first tool call, approve the authorization prompt in the Macuse window
+
+Restart the session (or run `/reload-plugins` in Claude Code) if tools do not
+appear immediately. Set `MACUSE_BINARY` if the app is not in `/Applications`.
+
+### Skills Included
+
+| Skill | Covers |
+| --- | --- |
+| `macuse-setup` | Install, connect a client, grant macOS permissions, diagnose a broken setup |
+| `macuse-apps` | Calendar, Mail, Reminders, Notes, Messages, Location — routing, parameter shapes, workflow ordering |
+| `macuse-computer-use` | Driving any Mac app's GUI — inspect/act/verify loop, element targeting, error recovery |
+
+The agent loads a skill only when the task calls for it. Details live in
+[`plugins/macuse/README.md`](plugins/macuse/README.md).
+
+> **Codex users:** write operations currently fail because Codex auto-declines
+> consent prompts from third-party MCP servers
+> ([openai/codex#18896](https://github.com/openai/codex/issues/18896)). Reads
+> work normally.
 
 ## Install for Claude Desktop
 
@@ -70,17 +124,47 @@ Per-client setup guides: [macuse.app/docs/clients](https://macuse.app/docs/clien
 - **Per-app permissions.** Allow, deny, or one-time-approve each AI client for each app it touches. Sensitive apps like password managers and banking re-confirm every time. Revoking an AI client automatically clears its app permissions.
 - **Per-client OAuth.** Each MCP client gets its own authorization, manageable in Macuse settings.
 
-## How This Bundle Works
+## How This Works
 
-`macuse-mcp` is a thin Node stdio wrapper (~130 LOC). It spawns `macuse mcp` (the CLI built into the Macuse macOS app) and forwards JSON-RPC over stdin/stdout. All MCP protocol handling, OAuth, and reconnection live inside the Macuse app — this bundle exists solely because Claude Desktop doesn't yet support `http://` remote connectors directly.
+Every install path is a thin shim over the same thing: `macuse mcp`, the CLI
+built into the Macuse macOS app. All MCP protocol handling, OAuth, permissions,
+and reconnection live inside the app.
 
-Override the binary path with the `MACUSE_BINARY` environment variable (configurable in the Claude Desktop bundle UI). Default: `/Applications/Macuse.app/Contents/MacOS/macuse`.
+- The **`.mcpb` bundle** is a ~130 LOC Node stdio wrapper that spawns `macuse mcp` and forwards JSON-RPC over stdin/stdout. It exists solely because Claude Desktop doesn't yet support `http://` remote connectors directly.
+- The **plugin** skips Node entirely — a shell launcher execs the same binary, and adds the skills on top.
+
+Override the binary path with the `MACUSE_BINARY` environment variable
+(configurable in the Claude Desktop bundle UI). Default:
+`/Applications/Macuse.app/Contents/MacOS/macuse`.
+
+## Repo Layout
+
+```
+.claude-plugin/marketplace.json   Claude Code marketplace catalog
+.agents/plugins/marketplace.json  Codex marketplace catalog
+plugins/macuse/                   The plugin — manifests, launcher, skills
+src/, bin/                        Node stdio wrapper for the .mcpb bundle
+manifest.json                     .mcpb bundle manifest (Claude Desktop)
+server.json                       MCP Registry entry
+```
+
+Both marketplaces point at `plugins/macuse` in this repo, so one push updates
+every channel. Version strings across `package.json`, `manifest.json`, and both
+plugin manifests are synced at release time by
+`scripts/sync-manifest-version.js`.
+
+Validate plugin changes before pushing:
+
+```shell
+claude plugin validate ./plugins/macuse --strict   # plugin manifest
+claude plugin validate . --strict                  # marketplace catalog
+```
 
 ## Requirements
 
 - macOS 13.0 (Ventura) or later — Apple Silicon or Intel
 - [Macuse](https://macuse.app) macOS app installed
-- Node 20.8.1+ (bundled by Claude Desktop's runtime)
+- Node 20.8.1+ for the `.mcpb` bundle only (bundled by Claude Desktop's runtime); the plugin has no Node dependency
 
 ## Links
 

@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "macuse": {
+      "command": "${CLAUDE_PLUGIN_ROOT}/bin/macuse-mcp.sh"
+    }
+  }
+}
