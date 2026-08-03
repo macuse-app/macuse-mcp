@@ -40,8 +40,13 @@ jobs:
         run: pnpm run lint
 
       - name: Install MCP Publisher
+        # Track latest rather than pinning. The registry validates the OIDC
+        # audience the publisher requests, so a server-side change can break
+        # any pinned binary — as v1.4.0 did once production started requiring
+        # a per-deployment audience. Latest is the install pattern upstream
+        # documents for exactly this reason.
         run: |
-          curl -L "https://github.com/modelcontextprotocol/registry/releases/download/v1.4.0/mcp-publisher_$(uname -s | tr '[:upper:]' '[:lower:]')_$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/').tar.gz" | tar xz mcp-publisher
+          curl -L "https://github.com/modelcontextprotocol/registry/releases/latest/download/mcp-publisher_$(uname -s | tr '[:upper:]' '[:lower:]')_$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/').tar.gz" | tar xz mcp-publisher
 
       - name: Login to MCP Registry
         run: ./mcp-publisher login github-oidc
