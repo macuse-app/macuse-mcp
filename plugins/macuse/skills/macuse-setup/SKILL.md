@@ -84,9 +84,8 @@ plugin is installed but disabled:
 - Codex: restart the session, then `codex plugin list` to confirm it is
   installed and enabled.
 
-Editing client config by hand on top of a plugin install produces a
-duplicate server, so only fall through to the manual branch below when the
-plugin is genuinely absent.
+The plugin already carries its own server entry, so only fall through to the
+manual branch below when the plugin is genuinely absent.
 
 **Manual branch** — for clients without the plugin installed:
 
