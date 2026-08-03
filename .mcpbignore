@@ -15,4 +15,11 @@ scripts/
 src/
 build/*.map
 
+# Agent-plugin distribution. Claude Desktop loads the .mcpb and never reads
+# these, so keep them out of the bundle.
+plugins/
+.claude-plugin/
+.agents/
+.impeccable/
+
 pnpm-lock.yaml

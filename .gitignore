@@ -62,6 +62,9 @@ jspm_packages/
 *.swp
 *.swo
 
+# Agent tooling caches
+.impeccable/
+
 # OS
 .DS_Store
 Thumbs.db
