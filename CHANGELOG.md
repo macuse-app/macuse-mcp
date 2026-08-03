@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/macuse-app/macuse-mcp/compare/v1.2.0...v1.3.0) (2026-08-03)
+
+
+### Features
+
+* distribute Macuse as an agent plugin for Claude Code and Codex ([#2](https://github.com/macuse-app/macuse-mcp/issues/2)) ([a57d01e](https://github.com/macuse-app/macuse-mcp/commit/a57d01e8e3f9b1bd840766bf68b26b5c10496a82)), closes [openai/codex#18896](https://github.com/openai/codex/issues/18896)
+
 # [1.2.0](https://github.com/macuse-app/macuse-mcp/compare/v1.1.2...v1.2.0) (2026-03-03)
 
 

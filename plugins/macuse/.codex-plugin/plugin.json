@@ -1,6 +1,6 @@
 {
   "name": "macuse",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Control native Mac apps — Calendar, Mail, Notes, Reminders, Messages — and drive any Mac app via Computer Use. Runs on-device. Requires the Macuse macOS app.",
   "author": {
     "name": "Macuse",
