@@ -1,0 +1,35 @@
+{
+  "name": "macuse",
+  "owner": {
+    "name": "Macuse",
+    "email": "support@macuse.app",
+    "url": "https://macuse.app"
+  },
+  "description": "Skills and MCP tools for controlling native macOS apps with Macuse.",
+  "plugins": [
+    {
+      "name": "macuse",
+      "source": "./plugins/macuse",
+      "displayName": "Macuse",
+      "description": "Control native Mac apps — Calendar, Mail, Notes, Reminders, Messages — and drive any Mac app via Computer Use. Runs on-device. Requires the Macuse macOS app.",
+      "author": {
+        "name": "Macuse",
+        "url": "https://macuse.app"
+      },
+      "homepage": "https://macuse.app",
+      "repository": "https://github.com/macuse-app/macuse-mcp",
+      "license": "MIT",
+      "category": "productivity",
+      "keywords": [
+        "macos",
+        "automation",
+        "computer-use",
+        "calendar",
+        "mail",
+        "notes",
+        "reminders",
+        "messages"
+      ]
+    }
+  ]
+}

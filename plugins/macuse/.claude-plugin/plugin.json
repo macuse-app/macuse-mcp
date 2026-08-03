@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "macuse",
+  "displayName": "Macuse",
+  "version": "1.2.0",
+  "description": "Control native Mac apps — Calendar, Mail, Notes, Reminders, Messages — and drive any Mac app via Computer Use. Runs on-device. Requires the Macuse macOS app.",
+  "author": {
+    "name": "Macuse",
+    "url": "https://macuse.app"
+  },
+  "homepage": "https://macuse.app",
+  "repository": "https://github.com/macuse-app/macuse-mcp",
+  "license": "MIT",
+  "keywords": [
+    "macos",
+    "automation",
+    "computer-use",
+    "calendar",
+    "mail",
+    "notes",
+    "reminders",
+    "messages"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json"
+}

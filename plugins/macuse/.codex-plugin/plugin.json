@@ -1,0 +1,39 @@
+{
+  "name": "macuse",
+  "version": "1.2.0",
+  "description": "Control native Mac apps — Calendar, Mail, Notes, Reminders, Messages — and drive any Mac app via Computer Use. Runs on-device. Requires the Macuse macOS app.",
+  "author": {
+    "name": "Macuse",
+    "url": "https://macuse.app"
+  },
+  "homepage": "https://macuse.app",
+  "repository": "https://github.com/macuse-app/macuse-mcp",
+  "license": "MIT",
+  "keywords": [
+    "macos",
+    "automation",
+    "computer-use",
+    "calendar",
+    "mail",
+    "notes",
+    "reminders",
+    "messages"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Macuse",
+    "shortDescription": "AI control for native Mac apps and any Mac GUI",
+    "longDescription": "Macuse connects Codex to macOS: read and write Calendar, Mail, Notes, Reminders, and Messages through native domain tools, and drive any other Mac app through the Accessibility API without stealing your focus. Everything runs on-device with per-client OAuth and per-app permissions. Requires the Macuse macOS app from https://macuse.app. Note: write operations need a consent prompt that Codex currently auto-declines (openai/codex#18896) — read operations are unaffected.",
+    "developerName": "Macuse",
+    "category": "Productivity",
+    "websiteURL": "https://macuse.app",
+    "privacyPolicyURL": "https://macuse.app/privacy",
+    "termsOfServiceURL": "https://macuse.app/terms",
+    "defaultPrompt": [
+      "What's on my calendar this week?",
+      "Search my mail for the Q2 launch thread and summarize it.",
+      "Create a reminder to follow up on this tomorrow at 9am."
+    ]
+  }
+}
